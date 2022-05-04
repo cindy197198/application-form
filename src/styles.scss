@@ -1,0 +1,19 @@
+body {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  margin: 0;
+  padding: 30px;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+button:focus {
+  outline: none;
+}
+
+.mat-form-field-appearance-fill .mat-form-field-flex {
+  background-color: #F6FBFF;
+  // border: 1px solid #000;
+}

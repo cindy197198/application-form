@@ -1,0 +1,184 @@
+<div class="dashboard-content-one">
+  <div class="card height-auto">
+    <div class="card-body">
+      <div class="heading-layout">
+        <h3 class="mb-3">Acting Application Form</h3>
+        <h5 class="mb-3">Candidate Details</h5>
+      </div>
+      <form
+        class="new-added-form example-form"
+        [formGroup]="form"
+        (ngSubmit)="submitForm()"
+      >
+        <div class="row">
+          <div class="col-lg-12 col-12 form-group">
+            <label>Name</label>
+            <div class="row">
+              <div class="col-lg-6 col-12 form-group">
+                <mat-form-field class="full-width" appearance="fill">
+                  <input matInput placeholder="First" />
+                </mat-form-field>
+              </div>
+              <div class="col-lg-6 col-12 form-group">
+                <mat-form-field class="full-width" appearance="fill">
+                  <input matInput placeholder="Last" />
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6 col-12 form-group">
+            <label>Date of Birth</label>
+            <mat-form-field class="full-width" appearance="fill">
+              <input matInput [matDatepicker]="picker" />
+              <mat-hint>MM/DD/YYYY</mat-hint>
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="picker"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div class="col-lg-6 col-12 form-group">
+            <label>Gender</label>
+            <mat-form-field class="full-width" appearance="fill">
+              <input matInput />
+            </mat-form-field>
+          </div>
+          <div class="col-lg-6 col-12 form-group">
+            <label>Email</label>
+            <mat-form-field class="full-width" appearance="fill">
+              <input
+                matInput
+                type="email"
+                formControlName="email"
+                [errorStateMatcher]="matcher"
+              />
+              <mat-error *ngIf="form.controls['email'].hasError('email')">
+                Please enter a valid email address
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-lg-6 col-12 form-group">
+            <label>Phone</label>
+            <mat-form-field class="full-width" appearance="fill">
+              <input
+                matInput
+                mask="000 000 0000"
+                placeholder="### ### ####"
+                formControlName="phone"
+              />
+            </mat-form-field>
+          </div>
+          <div class="col-lg-12 col-12 form-group">
+            <label>Address</label>
+            <div class="row">
+              <div class="col-lg-12 col-12 form-group">
+                <mat-form-field class="full-width" appearance="fill">
+                  <input
+                    matInput
+                    placeholder="Street Address"
+                    formControlName="streetAddress"
+                  />
+                </mat-form-field>
+              </div>
+              <div class="col-lg-12 col-12 form-group">
+                <mat-form-field class="full-width" appearance="fill">
+                  <input
+                    matInput
+                    placeholder="Street Address Line 2"
+                    formControlName="streetAddressLine2"
+                  />
+                </mat-form-field>
+              </div>
+              <div class="col-lg-6 col-12 form-group">
+                <mat-form-field class="full-width" appearance="fill">
+                  <input matInput placeholder="City" formControlName="city" />
+                </mat-form-field>
+              </div>
+              <div class="col-lg-6 col-12 form-group">
+                <mat-form-field class="full-width" appearance="fill">
+                  <input
+                    matInput
+                    placeholder="Region"
+                    formControlName="region"
+                  />
+                </mat-form-field>
+              </div>
+              <div class="col-lg-6 col-12 form-group">
+                <mat-form-field class="full-width" appearance="fill">
+                  <input
+                    matInput
+                    placeholder="Postal / Zip Code"
+                    formControlName="postal"
+                  />
+                </mat-form-field>
+              </div>
+              <div class="col-lg-6 col-12 form-group">
+                <mat-form-field class="full-width" appearance="fill">
+                  <mat-select formControlName="country" placeholder="Country">
+                    <mat-option
+                      *ngFor="let country of countriesList"
+                      [value]="country.code"
+                    >
+                      {{ country.name }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-12 col-12 form-group">
+            <label
+              >Do you have any illness, long term health condition or any
+              disability that you would like to make us aware of?</label
+            >
+            <mat-form-field class="full-width" appearance="fill">
+              <textarea matInput formControlName="healthDescription"></textarea>
+            </mat-form-field>
+          </div>
+          <div class="col-lg-12 col-12 form-group">
+            <label>Education and Qualifications</label>
+            <mat-form-field class="full-width" appearance="fill">
+              <textarea
+                matInput
+                formControlName="educationQualifications"
+              ></textarea>
+            </mat-form-field>
+          </div>
+          <div class="col-lg-12 col-12 form-group">
+            <label>Name of Present School or College</label>
+            <mat-form-field class="full-width" appearance="fill">
+              <input matInput formControlName="schoolName" />
+            </mat-form-field>
+          </div>
+          <div class="col-lg-12 col-12 form-group">
+            <label>Work and Performance Experience</label>
+            <mat-form-field class="full-width" appearance="fill">
+              <textarea matInput formControlName="workExperience"></textarea>
+            </mat-form-field>
+          </div>
+          <div class="col-lg-12 col-12 form-group">
+            <label>Special Skills</label>
+            <mat-form-field class="full-width" appearance="fill">
+              <textarea matInput formControlName="specialSkills"></textarea>
+            </mat-form-field>
+          </div>
+          <div class="col-lg-12 col-12 form-group">
+            <label>Signature of Candidate</label>
+            <mat-form-field class="full-width" appearance="fill">
+              <textarea matInput formControlName="signature"></textarea>
+            </mat-form-field>
+          </div>
+          <div class="col-12 form-group mg-t-8">
+            <button type="submit" mat-raised-button color="primary">
+              Preview
+            </button>
+          </div>
+        </div>
+      </form>
+      <div class="preview" *ngIf="submitted">
+        <p>{{ form.value | json }}</p>
+      </div>
+    </div>
+  </div>
+</div>
