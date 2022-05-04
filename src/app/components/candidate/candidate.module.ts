@@ -8,6 +8,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import {MatSelectModule} from '@angular/material/select';
 import { NgxMaskModule } from 'ngx-mask';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { NgxMaskModule } from 'ngx-mask';
     MatDatepickerModule,
     MatInputModule,
     MatSelectModule,
+    MatSlideToggleModule,
     NgxMaskModule.forChild()
   ],
   providers: []

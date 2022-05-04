@@ -1,54 +1,105 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
-import {ErrorStateMatcher} from '@angular/material/core';
-import { countries, Country } from 'src/app/models/countries';
+import {
+  FormArray,
+  FormControl,
+  FormGroup,
+  FormGroupDirective,
+  NgForm,
+  Validators,
+} from '@angular/forms';
+import { ErrorStateMatcher } from '@angular/material/core';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+  isErrorState(
+    control: FormControl | null,
+    form: FormGroupDirective | NgForm | null
+  ): boolean {
     const isSubmitted = form && form.submitted;
-    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+    return !!(
+      control &&
+      control.invalid &&
+      (control.dirty || control.touched || isSubmitted)
+    );
   }
 }
 
 @Component({
   selector: 'app-candidate',
   templateUrl: './candidate.component.html',
-  styleUrls: ['./candidate.component.scss']
+  styleUrls: ['./candidate.component.scss'],
 })
 export class CandidateComponent implements OnInit {
   form: FormGroup = new FormGroup({});
-  matcher = new MyErrorStateMatcher();
-  countriesList: Country[] = countries;
+  inputTypes: { code: number; text: string }[] = [
+    {
+      code: 1,
+      text: 'Text',
+    },
+    {
+      code: 2,
+      text: 'Number',
+    },
+    {
+      code: 3,
+      text: 'Textarea',
+    },
+    {
+      code: 4,
+      text: 'Dropdown',
+    },
+    {
+      code: 5,
+      text: 'Boolean',
+    },
+    {
+      code: 6,
+      text: 'Date',
+    },
+    {
+      code: 7,
+      text: 'Email',
+    },
+  ];
   submitted: boolean = false;
-  constructor() { }
+  inputValues: any;
+  formDemo: FormGroup = new FormGroup({});
+  constructor() {}
 
   ngOnInit(): void {
-    this.createForm();
+    this.form = new FormGroup({
+      inputs: new FormArray([]),
+    });
+    this.addForm();
   }
 
-  createForm() {
-    this.form = new FormGroup({
-      firstName: new FormControl(''),
-      lastName: new FormControl(''),
-      dateOfBirth: new FormControl(),
-      gender: new FormControl(''),
-      email: new FormControl('', [Validators.email]),
-      phone: new FormControl(''),
-      streetAddress: new FormControl(''),
-      streetAddressLine2: new FormControl(''),
-      city: new FormControl(''),
-      region: new FormControl(''),
-      postal: new FormControl(''),
-      country: new FormControl(''),
-      healthDescription: new FormControl(''),
-      educationQualifications: new FormControl(''),
-      schoolName: new FormControl(''),
-      workExperience: new FormControl(''),
-      specialSkills: new FormControl(''),
-      signature: new FormControl('')
-    })
+  get inputs() {
+    return this.form.controls['inputs'] as FormArray;
   }
-  submitForm() {
+
+  addForm() {
+    this.inputs.push(
+      new FormGroup({
+        label: new FormControl(''),
+        fieldName: new FormControl(''),
+        inputType: new FormControl(''),
+        regex: new FormControl(),
+      })
+    );
+  }
+
+  remove(index: number) {
+    this.inputs.removeAt(index);
+  }
+
+  preview() {
+    this.inputValues = this.form.value.inputs;
     this.submitted = true;
+    const group: any = {};
+    for (var field of this.inputValues) {
+      group[field.fieldName] = new FormControl(field.fieldValue || '', [
+        Validators.pattern(field.regex),
+      ]);
+    }
+    this.formDemo = new FormGroup(group);
   }
 }
