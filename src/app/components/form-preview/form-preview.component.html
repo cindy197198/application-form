@@ -1,0 +1,143 @@
+<div class="card height-auto mt-3">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-12 form-group">
+        <label>Import data</label>
+        <mat-form-field class="full-width" appearance="fill">
+          <textarea
+            matInput
+            placeholder="Add json data to import"
+            rows="10"
+            [(ngModel)]="importForm"
+          ></textarea>
+        </mat-form-field>
+      </div>
+      <div class="col-12 mb-3">
+        <button
+          type="button"
+          mat-raised-button
+          color="primary"
+          (click)="import()"
+        >
+          Import
+        </button>
+        <button
+          type="submit"
+          mat-raised-button
+          color="raised"
+          class="ml-2"
+          (click)="cancel()"
+        >
+          Back
+        </button>
+      </div>
+    </div>
+    <div class="heading-layout">
+      <h3 class="mb-3">Form Preview</h3>
+    </div>
+    <form [formGroup]="formDemo" *ngIf="formValues">
+      <div class="row">
+        <div class="col-12 heading-layout">
+          <h6>Form Name: {{ formValues.name }}</h6>
+          <h6>Form Description: {{ formValues.description }}</h6>
+        </div>
+      </div>
+      <div class="row">
+        <div
+          class="col-lg-6 col-12 form-group align-center"
+          *ngFor="let field of formValues.fields"
+        >
+          <label>{{ field.label }}</label>
+          <mat-form-field
+            class="full-width"
+            appearance="fill"
+            *ngIf="field.type == 1"
+          >
+            <input type="text" matInput [formControlName]="field.name" />
+          </mat-form-field>
+
+          <mat-form-field
+            class="full-width"
+            appearance="fill"
+            *ngIf="field.type == 2"
+          >
+            <input type="number" matInput [formControlName]="field.name" />
+          </mat-form-field>
+
+          <mat-form-field
+            class="full-width"
+            appearance="fill"
+            *ngIf="field.type == 3"
+          >
+            <textarea matInput [formControlName]="field.name"></textarea>
+          </mat-form-field>
+
+          <mat-form-field
+            class="full-width"
+            appearance="fill"
+            *ngIf="field.type == 4"
+          >
+            <mat-select
+              placeholder="Choose option"
+              [formControlName]="field.name"
+            >
+              <mat-option> Option 1 </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-slide-toggle
+            *ngIf="field.type == 5"
+            class="ml-3"
+            [formControlName]="field.name"
+          ></mat-slide-toggle>
+
+          <mat-form-field
+            class="full-width"
+            appearance="fill"
+            *ngIf="field.type == 6"
+          >
+            <input
+              matInput
+              [matDatepicker]="picker"
+              [formControlName]="field.name"
+            />
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field
+            class="full-width"
+            appearance="fill"
+            *ngIf="field.type == 7"
+          >
+            <input matInput type="email" [formControlName]="field.name" />
+          </mat-form-field>
+          <div
+            class="error-txt-msg mb-2"
+            *ngIf="
+              submitted && formDemo.controls[field.name].hasError('pattern')
+            "
+          >
+            Incorrect format.
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 form-group">
+          <button
+            type="submit"
+            mat-raised-button
+            color="accent"
+            (click)="submit()"
+          >
+            Submit
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

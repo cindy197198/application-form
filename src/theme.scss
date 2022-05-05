@@ -15,4 +15,11 @@ $theme: mat.define-light-theme((
   )
 ));
 
+
 @include mat.all-component-themes($theme);
+
+$background-color: #ebf6fc;
+$heading-color: #5873b8;
+$heading-level-2-color: #32329f;
+$field-color: #f6fbff;
+$error-color: #f23f2e;

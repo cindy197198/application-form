@@ -1,0 +1,119 @@
+<div class="card height-auto">
+  <div class="card-body" [formGroup]="form">
+    <div class="heading-layout">
+      <h3 class="mb-3">Form Creator</h3>
+    </div>
+    <div class="row">
+      <div class="col-lg-6 col-12 form-group">
+        <label>Form Name</label>
+        <mat-form-field class="full-width" appearance="fill">
+          <input matInput placeholder="Form Name" formControlName="name" />
+        </mat-form-field>
+      </div>
+      <div class="col-lg-6 col-12 form-group">
+        <label>Form Description</label>
+        <mat-form-field class="full-width" appearance="fill">
+          <input
+            matInput
+            placeholder="Description"
+            formControlName="description"
+          />
+        </mat-form-field>
+      </div>
+    </div>
+    <div formArrayName="fields">
+      <div class="row mb-3">
+        <h5 class="mb-3 col-12">Fields</h5>
+        <div class="col-12">
+          <button
+            type="button"
+            mat-raised-button
+            matTooltip="Add new"
+            color="primary"
+            class="icon-button"
+            (click)="addForm()"
+          >
+            <mat-icon>add</mat-icon>
+          </button>
+        </div>
+      </div>
+      <div
+        class="row"
+        *ngFor="let inputForm of inputs.controls; index as i"
+        [formGroupName]="i"
+      >
+        <div class="row col-12 line">
+          <div class="col-lg-3 col-12 form-group">
+            <label>Label</label>
+            <mat-form-field class="full-width" appearance="fill">
+              <input matInput placeholder="Label" formControlName="label" />
+            </mat-form-field>
+          </div>
+          <div class="col-lg-3 col-12 form-group">
+            <label>Name</label>
+            <mat-form-field class="full-width" appearance="fill">
+              <input matInput formControlName="name" />
+            </mat-form-field>
+          </div>
+          <div class="col-lg-2 col-12 form-group">
+            <label>Type</label>
+            <mat-form-field class="full-width" appearance="fill">
+              <mat-select formControlName="type">
+                <mat-option *ngFor="let type of inputTypes" [value]="type.code">
+                  {{ type.text }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-lg-3 col-12 form-group">
+            <label>Validation</label>
+            <mat-form-field class="full-width" appearance="fill">
+              <input matInput formControlName="validation" />
+            </mat-form-field>
+          </div>
+          <div class="col-lg-1 col-12 form-group">
+            <button
+              type="button"
+              mat-raised-button
+              matTooltip="Remove"
+              color="warn"
+              class="icon-button"
+              (click)="remove(inputForm.value.id)"
+            >
+              <mat-icon>remove</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 form-group mg-t-8">
+        <button
+          type="button"
+          mat-raised-button
+          color="primary"
+          (click)="export()"
+        >
+          Export
+        </button>
+        <button
+          type="button"
+          mat-raised-button
+          color="accent"
+          class="ml-2"
+          (click)="preview()"
+        >
+          Preview
+        </button>
+      </div>
+    </div>
+    <div class="row" *ngIf="inputValues">
+      <div class="col-12 form-group">
+        <label>Object</label>
+        <mat-form-field class="full-width" appearance="fill">
+          <textarea matInput rows="10" readonly="true" [value]="inputValues | json"></textarea>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+</div>
