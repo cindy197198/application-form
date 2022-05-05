@@ -63,6 +63,6 @@ export class FormCreatorComponent implements OnInit {
   }
 
   copy() {
-    this.toastr.success("The text is copied!");
+    this.toastr.success("The object data is copied!");
   }
 }
