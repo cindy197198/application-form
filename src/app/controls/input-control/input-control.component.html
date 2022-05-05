@@ -5,14 +5,16 @@
     *ngIf="type == inputTypes.Text"
   >
     <input type="text" matInput [formControlName]="fieldName" />
-  </mat-form-field>
-
-  <mat-form-field
-    class="full-width"
-    appearance="fill"
-    *ngIf="type == inputTypes.Number"
-  >
-    <input type="number" matInput [formControlName]="fieldName" />
+    <button matSuffix mat-icon-button>
+      <mat-icon
+      *ngIf="validation != ''"
+      class="info-icon"
+      matTooltip="Please enter regular expression to validate the field. Required format: {{validation}}"
+      matTooltipPosition="right"
+      matTooltipClass="tooltip-info"
+      >info</mat-icon
+    >
+    </button>
   </mat-form-field>
 
   <mat-form-field
@@ -32,13 +34,5 @@
     <mat-hint>MM/DD/YYYY</mat-hint>
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
-  </mat-form-field>
-
-  <mat-form-field
-    class="full-width"
-    appearance="fill"
-    *ngIf="type == inputTypes.Email"
-  >
-    <input matInput type="email" [formControlName]="fieldName" />
   </mat-form-field>
 </div>

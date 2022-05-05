@@ -10,6 +10,7 @@ import { FieldTypes } from 'src/app/constant';
 export class InputControlComponent implements OnInit {
   @Input() type: string = '';
   @Input() fieldName: string = '';
+  @Input() validation: string = '';
   @Input() parentForm: FormGroup = new FormGroup({});
   inputTypes = FieldTypes;
   constructor() { }

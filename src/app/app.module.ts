@@ -19,6 +19,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { InputControlComponent } from './controls/input-control/input-control.component';
 import { DropdownControlComponent } from './controls/dropdown-control/dropdown-control.component';
 import { BooleanControlComponent } from './controls/boolean-control/boolean-control.component';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { BooleanControlComponent } from './controls/boolean-control/boolean-cont
     InputControlComponent,
     DropdownControlComponent,
     BooleanControlComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -44,6 +46,7 @@ import { BooleanControlComponent } from './controls/boolean-control/boolean-cont
     MatSlideToggleModule,
     MatIconModule,
     MatTooltipModule,
+    ToastrModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent],

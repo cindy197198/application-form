@@ -59,13 +59,23 @@
             <label>Type</label>
             <mat-form-field class="full-width" appearance="fill">
               <mat-select formControlName="type">
-                <mat-option *ngFor="let type of inputTypes | keyvalue" [value]="type.value">
+                <mat-option
+                  *ngFor="let type of inputTypes | keyvalue"
+                  [value]="type.value"
+                >
                   {{ type.value }}
                 </mat-option>
               </mat-select>
             </mat-form-field>
           </div>
-          <div class="col-lg-3 col-12 form-group">
+          <div
+            class="col-lg-3 col-12 form-group"
+            [hidden]=" inputForm.value.type == '' ||
+              inputForm.value.type == inputTypes.Boolean ||
+              inputForm.value.type == inputTypes.Date ||
+              inputForm.value.type == inputTypes.Dropdown
+            "
+          >
             <label>Validation</label>
             <mat-form-field class="full-width" appearance="fill">
               <input matInput formControlName="validation" />
@@ -111,8 +121,23 @@
       <div class="col-12 form-group">
         <label>Object</label>
         <mat-form-field class="full-width" appearance="fill">
-          <textarea matInput rows="10" readonly="true" [value]="inputValues | json"></textarea>
+          <textarea
+            matInput
+            rows="10"
+            readonly="true"
+            [value]="inputValues | json"
+          ></textarea>
         </mat-form-field>
+      </div>
+      <div class="col-12 form-group mg-t-8">
+        <button
+          type="button"
+          mat-raised-button
+          color="primary"
+          matTooltip="Copy object"
+        >
+          Copy
+        </button>
       </div>
     </div>
   </div>

@@ -32,8 +32,9 @@
         </button>
       </div>
     </div>
-    <div class="heading-layout">
-      <h3 class="mb-3">Form Preview</h3>
+    <div class="heading-layout" >
+      <h3 class="mb-3" [hidden]="!formValues">Form Preview</h3>
+      <p [hidden]="formValues">Please paste form object above to view</p>
     </div>
     <form [formGroup]="formDemo" *ngIf="formValues">
       <div class="row">
@@ -63,6 +64,7 @@
             *ngIf="isInputControl(field.type)"
             [type]="field.type"
             [fieldName]="field.name"
+            [validation]="field.validation"
             [parentForm]="formDemo"
           >
           </app-input-control>
@@ -75,6 +77,14 @@
           >
             Incorrect format.
           </div>
+          <div
+          class="error-txt-msg mb-2"
+          *ngIf="
+            submitted && formDemo.controls[field.name].hasError('matDatepickerParse')
+          "
+        >
+          Incorrect date.
+        </div>
         </div>
       </div>
       <div class="row">
