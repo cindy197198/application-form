@@ -18,6 +18,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { InputControlComponent } from './controls/input-control/input-control.component';
 import { DropdownControlComponent } from './controls/dropdown-control/dropdown-control.component';
+import { BooleanControlComponent } from './controls/boolean-control/boolean-control.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { DropdownControlComponent } from './controls/dropdown-control/dropdown-c
     FormPreviewComponent,
     InputControlComponent,
     DropdownControlComponent,
+    BooleanControlComponent,
   ],
   imports: [
     BrowserModule,

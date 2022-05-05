@@ -54,11 +54,11 @@
             *ngIf="field.type == inputTypes.Dropdown"
           >
           </app-dropdown-control>
-          <mat-slide-toggle
+          <app-boolean-control
             *ngIf="field.type == inputTypes.Boolean"
-            class="ml-3"
-            [formControlName]="field.name"
-          ></mat-slide-toggle>
+            [fieldName]="field.name"
+            [parentForm]="formDemo"
+          ></app-boolean-control>
           <app-input-control
             *ngIf="isInputControl(field.type)"
             [type]="field.type"
