@@ -60,7 +60,7 @@
             <mat-form-field class="full-width" appearance="fill">
               <mat-select formControlName="type">
                 <mat-option
-                  *ngFor="let type of inputTypes | keyvalue"
+                  *ngFor="let type of inputTypes | keyvalue: orderOriginal"
                   [value]="type.value"
                 >
                   {{ type.value }}

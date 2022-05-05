@@ -1,3 +1,4 @@
+import { KeyValue } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -64,5 +65,9 @@ export class FormCreatorComponent implements OnInit {
 
   copy() {
     this.toastr.success("The object data is copied!");
+  }
+
+  orderOriginal = (a: KeyValue<string,string>, b: KeyValue<string,string>): number => {
+    return 0;
   }
 }
