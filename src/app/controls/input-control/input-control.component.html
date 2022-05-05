@@ -26,23 +26,6 @@
   <mat-form-field
     class="full-width"
     appearance="fill"
-    *ngIf="type == inputTypes.Dropdown"
-  >
-    <mat-select placeholder="Choose option" [formControlName]="fieldName">
-      <mat-option> Option 1 </mat-option>
-      <mat-option> Option 2 </mat-option>
-    </mat-select>
-  </mat-form-field>
-
-  <mat-slide-toggle
-    *ngIf="type == inputTypes.Boolean"
-    class="ml-3"
-    [formControlName]="fieldName"
-  ></mat-slide-toggle>
-
-  <mat-form-field
-    class="full-width"
-    appearance="fill"
     *ngIf="type == inputTypes.Date"
   >
     <input matInput [matDatepicker]="picker" [formControlName]="fieldName" />

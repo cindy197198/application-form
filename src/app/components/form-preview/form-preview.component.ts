@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { FieldTypes } from 'src/app/constant';
 
 @Component({
   selector: 'app-form-preview',
@@ -12,7 +13,7 @@ export class FormPreviewComponent implements OnInit {
   importForm: string = '';
   formDemo: FormGroup = new FormGroup({});
   submitted: boolean = false;
-  
+  inputTypes = FieldTypes;
   constructor(private router: Router) {
     let routeState = this.router.getCurrentNavigation();
     if (routeState?.extras.state) {
@@ -49,5 +50,15 @@ export class FormPreviewComponent implements OnInit {
 
   cancel() {
     this.router.navigate(['/create']);
+  }
+
+  isInputControl(type: string) {
+    return (
+      type == this.inputTypes.Text ||
+      type == this.inputTypes.Textarea ||
+      type == this.inputTypes.Email ||
+      type == this.inputTypes.Date ||
+      type == this.inputTypes.Number
+    );
   }
 }

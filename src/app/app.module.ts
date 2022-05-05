@@ -17,6 +17,7 @@ import { FormPreviewComponent } from './components/form-preview/form-preview.com
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { InputControlComponent } from './controls/input-control/input-control.component';
+import { DropdownControlComponent } from './controls/dropdown-control/dropdown-control.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { InputControlComponent } from './controls/input-control/input-control.co
     FormCreatorComponent,
     FormPreviewComponent,
     InputControlComponent,
+    DropdownControlComponent,
   ],
   imports: [
     BrowserModule,

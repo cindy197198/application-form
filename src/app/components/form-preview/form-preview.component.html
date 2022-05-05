@@ -48,12 +48,25 @@
           *ngFor="let field of formValues.fields"
         >
           <label>{{ field.label }}</label>
+          <app-dropdown-control
+            [fieldName]="field.name"
+            [parentForm]="formDemo"
+            *ngIf="field.type == inputTypes.Dropdown"
+          >
+          </app-dropdown-control>
+          <mat-slide-toggle
+            *ngIf="field.type == inputTypes.Boolean"
+            class="ml-3"
+            [formControlName]="field.name"
+          ></mat-slide-toggle>
           <app-input-control
+            *ngIf="isInputControl(field.type)"
             [type]="field.type"
             [fieldName]="field.name"
             [parentForm]="formDemo"
           >
           </app-input-control>
+
           <div
             class="error-txt-msg mb-2"
             *ngIf="
