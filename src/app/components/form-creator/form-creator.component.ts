@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { FieldTypes } from 'src/app/constant';
 
 @Component({
@@ -14,7 +15,7 @@ export class FormCreatorComponent implements OnInit {
   submitted: boolean = false;
   inputValues: any;
   formDemo: FormGroup = new FormGroup({});
-  constructor(private router: Router) {}
+  constructor(private router: Router, private toastr: ToastrService) {}
 
   ngOnInit(): void {
     this.form = new FormGroup({
@@ -59,5 +60,9 @@ export class FormCreatorComponent implements OnInit {
 
   export() {
     this.inputValues = this.form.value;
+  }
+
+  copy() {
+    this.toastr.success("The text is copied!");
   }
 }
