@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { FieldTypes } from 'src/app/constant';
 
 @Component({
   selector: 'app-form-creator',
@@ -9,36 +10,7 @@ import { Router } from '@angular/router';
 })
 export class FormCreatorComponent implements OnInit {
   form: FormGroup = new FormGroup({});
-  inputTypes: { code: number; text: string }[] = [
-    {
-      code: 1,
-      text: 'Text',
-    },
-    {
-      code: 2,
-      text: 'Number',
-    },
-    {
-      code: 3,
-      text: 'Textarea',
-    },
-    {
-      code: 4,
-      text: 'Dropdown',
-    },
-    {
-      code: 5,
-      text: 'Boolean',
-    },
-    {
-      code: 6,
-      text: 'Date',
-    },
-    {
-      code: 7,
-      text: 'Email',
-    },
-  ];
+  inputTypes = FieldTypes;
   submitted: boolean = false;
   inputValues: any;
   formDemo: FormGroup = new FormGroup({});

@@ -1,0 +1,61 @@
+<div [formGroup]="parentForm">
+  <mat-form-field
+    class="full-width"
+    appearance="fill"
+    *ngIf="type == inputTypes.Text"
+  >
+    <input type="text" matInput [formControlName]="fieldName" />
+  </mat-form-field>
+
+  <mat-form-field
+    class="full-width"
+    appearance="fill"
+    *ngIf="type == inputTypes.Number"
+  >
+    <input type="number" matInput [formControlName]="fieldName" />
+  </mat-form-field>
+
+  <mat-form-field
+    class="full-width"
+    appearance="fill"
+    *ngIf="type == inputTypes.Textarea"
+  >
+    <textarea matInput [formControlName]="fieldName"></textarea>
+  </mat-form-field>
+
+  <mat-form-field
+    class="full-width"
+    appearance="fill"
+    *ngIf="type == inputTypes.Dropdown"
+  >
+    <mat-select placeholder="Choose option" [formControlName]="fieldName">
+      <mat-option> Option 1 </mat-option>
+      <mat-option> Option 2 </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-slide-toggle
+    *ngIf="type == inputTypes.Boolean"
+    class="ml-3"
+    [formControlName]="fieldName"
+  ></mat-slide-toggle>
+
+  <mat-form-field
+    class="full-width"
+    appearance="fill"
+    *ngIf="type == inputTypes.Date"
+  >
+    <input matInput [matDatepicker]="picker" [formControlName]="fieldName" />
+    <mat-hint>MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field
+    class="full-width"
+    appearance="fill"
+    *ngIf="type == inputTypes.Email"
+  >
+    <input matInput type="email" [formControlName]="fieldName" />
+  </mat-form-field>
+</div>

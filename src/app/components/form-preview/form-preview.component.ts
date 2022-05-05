@@ -12,7 +12,7 @@ export class FormPreviewComponent implements OnInit {
   importForm: string = '';
   formDemo: FormGroup = new FormGroup({});
   submitted: boolean = false;
-  isImport: boolean = false;
+  
   constructor(private router: Router) {
     let routeState = this.router.getCurrentNavigation();
     if (routeState?.extras.state) {

@@ -59,8 +59,8 @@
             <label>Type</label>
             <mat-form-field class="full-width" appearance="fill">
               <mat-select formControlName="type">
-                <mat-option *ngFor="let type of inputTypes" [value]="type.code">
-                  {{ type.text }}
+                <mat-option *ngFor="let type of inputTypes | keyvalue" [value]="type.value">
+                  {{ type.value }}
                 </mat-option>
               </mat-select>
             </mat-form-field>

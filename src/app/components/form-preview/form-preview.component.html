@@ -48,74 +48,12 @@
           *ngFor="let field of formValues.fields"
         >
           <label>{{ field.label }}</label>
-          <mat-form-field
-            class="full-width"
-            appearance="fill"
-            *ngIf="field.type == 1"
+          <app-input-control
+            [type]="field.type"
+            [fieldName]="field.name"
+            [parentForm]="formDemo"
           >
-            <input type="text" matInput [formControlName]="field.name" />
-          </mat-form-field>
-
-          <mat-form-field
-            class="full-width"
-            appearance="fill"
-            *ngIf="field.type == 2"
-          >
-            <input type="number" matInput [formControlName]="field.name" />
-          </mat-form-field>
-
-          <mat-form-field
-            class="full-width"
-            appearance="fill"
-            *ngIf="field.type == 3"
-          >
-            <textarea matInput [formControlName]="field.name"></textarea>
-          </mat-form-field>
-
-          <mat-form-field
-            class="full-width"
-            appearance="fill"
-            *ngIf="field.type == 4"
-          >
-            <mat-select
-              placeholder="Choose option"
-              [formControlName]="field.name"
-            >
-              <mat-option> Option 1 </mat-option>
-            </mat-select>
-          </mat-form-field>
-
-          <mat-slide-toggle
-            *ngIf="field.type == 5"
-            class="ml-3"
-            [formControlName]="field.name"
-          ></mat-slide-toggle>
-
-          <mat-form-field
-            class="full-width"
-            appearance="fill"
-            *ngIf="field.type == 6"
-          >
-            <input
-              matInput
-              [matDatepicker]="picker"
-              [formControlName]="field.name"
-            />
-            <mat-hint>MM/DD/YYYY</mat-hint>
-            <mat-datepicker-toggle
-              matSuffix
-              [for]="picker"
-            ></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field>
-
-          <mat-form-field
-            class="full-width"
-            appearance="fill"
-            *ngIf="field.type == 7"
-          >
-            <input matInput type="email" [formControlName]="field.name" />
-          </mat-form-field>
+          </app-input-control>
           <div
             class="error-txt-msg mb-2"
             *ngIf="
